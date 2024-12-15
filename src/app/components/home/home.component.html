@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h1 class="mb-3">Your Files</h1>
+  
+    <!-- File Upload Form -->
+    <form (ngSubmit)="uploadFile()" #fileForm="ngForm" enctype="multipart/form-data">
+      <div class="mb-3">
+        <input type="file" class="form-control" (change)="onFileSelect($event)" required />
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Upload</button>
+    </form>
+  
+    <hr />
+  
+    <!-- File List -->
+    <div *ngIf="files.length > 0; else noFiles">
+      <div class="list-group">
+        <a *ngFor="let file of files" class="list-group-item list-group-item-action"
+          [routerLink]="['/view-file', file._id]">
+          {{ file.name }}
+        </a>
+      </div>
+    </div>
+  
+    <!-- No Files Message -->
+    <ng-template #noFiles>
+      <p>No files found. Upload your first file!</p>
+    </ng-template>
+</div>
+  

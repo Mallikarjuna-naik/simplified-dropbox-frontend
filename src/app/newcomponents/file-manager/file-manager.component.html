@@ -1,0 +1,84 @@
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Simplified Dropbox</h1>
+  
+    <!-- File Upload Section -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3 class="h5">Upload a File</h3>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="uploadFile()" #uploadForm="ngForm" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="fileInput" class="form-label">Choose File</label>
+            <input 
+              type="file" 
+              id="fileInput" 
+              class="form-control" 
+              (change)="onFileSelected($event)" 
+              required />
+          </div>
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            [disabled]="!selectedFile">
+            Upload File
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- File List Section -->
+    <div class="card">
+        <div class="card-header">
+            <div class="header-left">
+              <h3 class="h5">Uploaded Files</h3>
+            </div>
+            <div class="header-right" (click)="rotateIcon()">
+              <img 
+                src="./assets/svg/refresh-svgrepo-com.svg" 
+                alt="refresh icon" 
+                class="refresh-icon" 
+                [ngClass]="{'rotate': isRotating}" />
+              <span>refresh</span>
+            </div>
+        </div>                   
+      <div class="card-body">
+        <div *ngIf="files.length === 0" class="text-center">
+          <p>No files uploaded yet.</p>
+        </div>
+  
+        <table *ngIf="files.length > 0" class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Name</th>
+              <th>id</th>
+              <th>Type</th>
+              <th>Size (KB)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of files">
+              <td (click)="viewFile(file._id)" style="cursor: pointer;color: blue;">{{ file.name }}</td>
+              <td>{{ file._id }}</td>
+              <td>{{ file.mimetype }}</td>
+              <td>{{ (file.size / 1024).toFixed(2) }}</td>
+              <td>
+                <button 
+                  class="btn btn-sm btn-primary me-2" 
+                  (click)="viewFile(file._id)">
+                  View
+                </button>
+                <button 
+                  class="btn btn-sm btn-success" 
+                  (click)="downloadFile(file._id, file.name)">
+                  Download
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+  

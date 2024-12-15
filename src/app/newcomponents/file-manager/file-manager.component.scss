@@ -1,0 +1,28 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.refresh-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 8px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(360deg);
+}

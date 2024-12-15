@@ -1,0 +1,10 @@
+<div class="container mt-4">
+    <h1>{{ file?.name }}</h1>
+    <div *ngIf="file?.mimetype.startsWith('image/'); else nonImage">
+      <img [src]="fileUrl" class="img-fluid" alt="File" />
+    </div>
+    <ng-template #nonImage>
+      <p>File preview not available. <a [href]="fileUrl" download>Download the file</a>.</p>
+    </ng-template>
+</div>
+  
