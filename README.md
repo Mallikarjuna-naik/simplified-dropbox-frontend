@@ -7,6 +7,7 @@ A responsive Angular-based frontend application that allows users to upload, vie
 - Upload files (supports `image/png`, `image/jpeg`, `text/plain`, `application/json`).
 - View file details and download files.
 - Refresh functionality with rotating icon animation.
+- Delete Functionality
 
 ## Prerequisites
 Before running the project, ensure you have the following installed:
