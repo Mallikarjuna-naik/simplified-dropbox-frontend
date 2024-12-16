@@ -11,7 +11,7 @@ A responsive Angular-based frontend application that allows users to upload, vie
 
 ## Prerequisites
 Before running the project, ensure you have the following installed:
-- [Node.js](https://nodejs.org) (version 16 or above recommended)
+- [Node.js](https://nodejs.org) (version 22.12.0 recommended)
 - [Angular CLI](https://angular.io/cli)
 - A running backend service for API integration ([simplified-dropbox-backend](https://github.com/Mallikarjuna-naik/dropbox-backend.git))
 
