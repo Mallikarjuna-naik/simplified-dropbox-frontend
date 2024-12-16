@@ -13,6 +13,36 @@ A responsive Angular-based frontend application that allows users to upload, vie
 Before running the project, ensure you have the following installed:
 - [Node.js](https://nodejs.org) (version 16 or above recommended)
 - [Angular CLI](https://angular.io/cli)
+```bash
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 12.2.17
+Node: 22.12.0 (Unsupported)
+Package Manager: npm 10.9.0
+OS: win32 x64
+
+Angular: 12.2.17
+... animations, cli, common, compiler, compiler-cli, core, forms
+... platform-browser, platform-browser-dynamic, router
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1202.17
+@angular-devkit/build-angular   12.2.17
+@angular-devkit/core            12.2.17
+@angular-devkit/schematics      12.2.17
+@angular/cdk                    12.2.13
+@angular/material               12.2.13
+@schematics/angular             12.2.17
+rxjs                            6.6.7
+typescript                      4.2.4
+```
 - A running backend service for API integration ([simplified-dropbox-backend](https://github.com/Mallikarjuna-naik/dropbox-backend.git))
 
 ## Install Dependencies
