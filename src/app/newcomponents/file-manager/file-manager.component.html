@@ -9,7 +9,7 @@
       <div class="card-body">
         <form (ngSubmit)="uploadFile()" #uploadForm="ngForm" enctype="multipart/form-data">
           <div class="mb-3">
-            <label for="fileInput" class="form-label">Choose File</label>
+            <label for="fileInput" class="form-label">Choose File ( Allowed types are:.txt,.jpg,.jpeg,.png,.json ) </label>
             <input 
               type="file" 
               id="fileInput" 
@@ -74,6 +74,11 @@
                   class="btn btn-sm btn-success" 
                   (click)="downloadFile(file._id, file.name)">
                   Download
+                </button>
+                <button 
+                  class="btn btn-sm" 
+                  (click)="deleteFile(file._id, file.path)">
+                  <img src="./assets/images/delete.png" alt="delete" style="height: 32px;width: 32px;">
                 </button>
               </td>
             </tr>

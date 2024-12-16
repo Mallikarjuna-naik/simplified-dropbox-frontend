@@ -32,6 +32,10 @@ export class FileService {
     return this.http.get(`${this.apiUrl}/viewFile/${fileId}`, { responseType: 'blob' });
   }
 
+  deleteFile(fileName: string) {
+    return this.http.delete(`${this.apiUrl}/delete/${fileName}`);
+  }
+
   downloadFile(fileId: string): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/download/${fileId}`, {
       responseType: 'blob',

@@ -20,6 +20,7 @@ export class FileManagerComponent implements OnInit {
 
   rotateIcon() {
     this.isRotating = !this.isRotating;
+    this.refresh();
   }
 
   /**
@@ -61,6 +62,7 @@ export class FileManagerComponent implements OnInit {
    * Fetch the list of files from the backend.
    */
   fetchFiles(): void {
+    this.files = [];
     this.fileService.getFiles().subscribe((data: any) => {
       this.files = data;
       console.log("this.files: ",this.files);
@@ -97,7 +99,15 @@ export class FileManagerComponent implements OnInit {
   }
 
   refresh(){
+    this.files = [];
     this.fetchFiles();
-    this.isRotating = false;
+  }
+
+  deleteFile (fileId: string, fileName: string) {
+
+    this.fileService.deleteFile(fileName).subscribe((data: any) => {
+      // if(data)
+      this.refresh();
+    });
   }
 }
