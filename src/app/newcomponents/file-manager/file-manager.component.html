@@ -14,7 +14,8 @@
               type="file" 
               id="fileInput" 
               class="form-control" 
-              (change)="onFileSelected($event)" 
+              (change)="onFileSelected($event)"
+              accept=".txt,.jpg,.jpeg,.png,.json"
               required />
           </div>
           <button 
@@ -51,7 +52,7 @@
           <thead class="table-light">
             <tr>
               <th>Name</th>
-              <th>id</th>
+              <!-- <th>id</th> -->
               <th>Type</th>
               <th>Size (KB)</th>
               <th>Actions</th>
@@ -60,7 +61,7 @@
           <tbody>
             <tr *ngFor="let file of files">
               <td (click)="viewFile(file._id)" style="cursor: pointer;color: blue;">{{ file.name }}</td>
-              <td>{{ file._id }}</td>
+              <!-- <td>{{ file._id }}</td> -->
               <td>{{ file.mimetype }}</td>
               <td>{{ (file.size / 1024).toFixed(2) }}</td>
               <td>

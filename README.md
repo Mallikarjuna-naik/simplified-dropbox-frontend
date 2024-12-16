@@ -1,27 +1,81 @@
-# SimplifiedDropboxFrontend
+# Simplified Dropbox - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+A responsive Angular-based frontend application that allows users to upload, view, and download files. This application works seamlessly with the Simplified Dropbox backend.
 
-## Development server
+## Features
+- View a list of uploaded files.
+- Upload files (supports `image/png`, `image/jpeg`, `text/plain`, `application/json`).
+- View file details and download files.
+- Refresh functionality with rotating icon animation.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Prerequisites
+Before running the project, ensure you have the following installed:
+- [Node.js](https://nodejs.org) (version 16 or above recommended)
+- [Angular CLI](https://angular.io/cli)
+- A running backend service for API integration ([simplified-dropbox-backend](https://github.com/your-backend-repo))
 
-## Code scaffolding
+## Install Dependencies
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/simplified-dropbox-frontend.git
+   cd simplified-dropbox-frontend
+   ```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Build
+## Run the Application
+1. Start the development server:
+   ```bash
+   ng serve
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. The frontend service will be available at [http://localhost:4200](http://localhost:4200).
 
-## Running unit tests
+## API Configuration
+Make sure the backend service is running, and update the API URL in the `environment.ts` file:
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Directory Structure
+```
+simplified-dropbox-frontend
+│
+├── src
+│   ├── app
+│   │   ├── components
+│   │   │   ├── file-manager
+│   │   │   │   ├── file-manager.component.html
+│   │   │   │   ├── file-manager.component.ts
+│   │   │   │   └── file-managert.component.scss
+│   │   ├── services
+│   │   │   └── file.service.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.ts
+│   │   ├── app-routing.module.ts
+│   │   └── app.module.ts
+│   ├── assets
+│   │   ├── svg
+│   │   │   └── refresh-svgrepo-com.svg
+│   │   └── styles
+│   │       └── global.css
+│   ├── environments
+│   │   ├── environment.prod.ts
+│   │   └── environment.ts
+│   └── index.html
+├── angular.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Additional Information
+- **Styling**: The project uses Bootstrap and Angular Material for responsiveness and styling.
+- **Icons**: SVG files are stored in the `assets/svg` directory.
+- **Pipes**: The project includes a `SafeUrlPipe` for securely rendering file URLs.

@@ -10,6 +10,7 @@ export class FileManagerComponent implements OnInit {
   files: any[] = []; 
   selectedFile: File | null = null; 
   isRotating = false;
+  fileTypes = ['.txt', '.jpg', '.png', '.json']; // Allowed file types
 
   constructor( private fileService: FileService ) {}
 
@@ -38,14 +39,22 @@ export class FileManagerComponent implements OnInit {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
+    const fileType = this.selectedFile.name.split('.').pop();
 
-    this.fileService.uploadFile(formData).subscribe( () => {
-      alert('File uploaded successfully!');
-      this.selectedFile = null; // Reset file input
-      this.fetchFiles(); // Refresh file list
-    });
+    if(this.fileTypes.includes('.' + fileType)) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+  
+      this.fileService.uploadFile(formData).subscribe( () => {
+        alert('File uploaded successfully!');
+        this.selectedFile = null; // Reset file input
+        this.fetchFiles(); // Refresh file list
+      });
+    }
+    else {
+      alert('Invalid file type. Allowed types are: ' + this.fileTypes.join(', '));
+      this.selectedFile = null;
+    }
   }
 
   /**
