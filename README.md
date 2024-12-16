@@ -12,12 +12,12 @@ A responsive Angular-based frontend application that allows users to upload, vie
 Before running the project, ensure you have the following installed:
 - [Node.js](https://nodejs.org) (version 16 or above recommended)
 - [Angular CLI](https://angular.io/cli)
-- A running backend service for API integration ([simplified-dropbox-backend](https://github.com/your-backend-repo))
+- A running backend service for API integration ([simplified-dropbox-backend](https://github.com/Mallikarjuna-naik/dropbox-backend.git))
 
 ## Install Dependencies
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/simplified-dropbox-frontend.git
+   git clone https://github.com/Mallikarjuna-naik/simplified-dropbox-frontend.git
    cd simplified-dropbox-frontend
    ```
 
