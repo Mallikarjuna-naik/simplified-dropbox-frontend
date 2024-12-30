@@ -10,7 +10,7 @@ export class FileManagerComponent implements OnInit {
   files: any[] = []; 
   selectedFile: File | null = null; 
   isRotating = false;
-  fileTypes = ['.txt', '.jpg', '.png', '.json']; // Allowed file types
+  fileTypes = ['.txt', '.jpg', '.png','.jpeg', '.json']; // Allowed file types
 
   constructor( private fileService: FileService ) {}
 

@@ -43,7 +43,7 @@ Package                         Version
 rxjs                            6.6.7
 typescript                      4.2.4
 ```
-- A running backend service for API integration ([simplified-dropbox-backend](https://github.com/Mallikarjuna-naik/dropbox-backend.git))
+- A running backend service for API integration ([simplified-dropbox-backend](https://github.com/Mallikarjuna-naik/simplified-dropbox-backend.git))
 
 ## Install Dependencies
 1. Clone the repository:
