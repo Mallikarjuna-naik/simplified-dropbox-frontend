@@ -1,3 +1,6 @@
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -26,3 +29,14 @@
 .rotate {
     transform: rotate(360deg);
 }
+
+.cursor {
+    cursor: pointer;
+}
+
+.custom-snackbar {
+    background-color: #4caf50; /* Green background */
+    color: white;
+    z-index: 1000; /* Ensure it appears on top */
+}
+  

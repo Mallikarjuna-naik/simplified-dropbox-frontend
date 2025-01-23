@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileService } from '../../services/file.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-file-manager',
@@ -10,17 +11,26 @@ export class FileManagerComponent implements OnInit {
   files: any[] = []; 
   selectedFile: File | null = null; 
   isRotating = false;
-  fileTypes = ['.txt', '.jpg', '.png','.jpeg', '.json']; // Allowed file types
+  fileTypes = ['.txt', '.jpg', '.png','.jpeg', '.json', '.pdf']; // Allowed file types
 
-  constructor( private fileService: FileService ) {}
+  constructor( private fileService: FileService, private snackBar: MatSnackBar ) {}
 
   ngOnInit(): void {
     this.fetchFiles();
   }
 
+  openSnackBar(message: string, action: string) {
+    console.log('Snackbar is triggered');
+    this.snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: ['custom-snackbar']
+    });
+  }
+
   rotateIcon() {
     this.isRotating = !this.isRotating;
     this.refresh();
+    // this.openSnackBar('Data fetched successfully!', 'Close');
   }
 
   /**
@@ -46,14 +56,18 @@ export class FileManagerComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
   
-      this.fileService.uploadFile(formData).subscribe( () => {
-        alert('File uploaded successfully!');
+      this.fileService.uploadFile(formData).subscribe( (res:any) => {
+        console.log("uploaded file response: ", res);
+        this.openSnackBar(`${res?.message}`, 'Close');
+        // alert('File uploaded successfully!');
         this.selectedFile = null; // Reset file input
         this.fetchFiles(); // Refresh file list
       });
     }
     else {
-      alert('Invalid file type. Allowed types are: ' + this.fileTypes.join(', '));
+      let errorMessage = 'Invalid file type. Allowed types are: ' + this.fileTypes.join(', ')
+      this.openSnackBar(errorMessage, 'Close');
+      // alert('Invalid file type. Allowed types are: ' + this.fileTypes.join(', '));
       this.selectedFile = null;
     }
   }
@@ -79,7 +93,8 @@ export class FileManagerComponent implements OnInit {
       const url = URL.createObjectURL(fileContent);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'downloaded_file'; // Customize the file name
+      // link.download = 'downloaded_file'; // Customize the file name
+      link.download = `${fileName}`
       link.click();
     });
   }
@@ -101,13 +116,18 @@ export class FileManagerComponent implements OnInit {
   refresh(){
     this.files = [];
     this.fetchFiles();
+    this.openSnackBar('The data has been refreshed successfully.', 'Close');
   }
 
   deleteFile (fileId: string, fileName: string) {
 
     this.fileService.deleteFile(fileName).subscribe((data: any) => {
       // if(data)
-      this.refresh();
+      console.log("delete file api res:", data);
+      this.files = [];
+      this.fetchFiles();
+      this.openSnackBar(`${data?.message}`, 'Close');
+      // this.refresh();
     });
   }
 }
