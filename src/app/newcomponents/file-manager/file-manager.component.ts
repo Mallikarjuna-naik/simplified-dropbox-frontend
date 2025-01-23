@@ -12,6 +12,11 @@ export class FileManagerComponent implements OnInit {
   selectedFile: File | null = null; 
   isRotating = false;
   fileTypes = ['.txt', '.jpg', '.png','.jpeg', '.json', '.pdf']; // Allowed file types
+  paginatedFiles: any[] = []; // To display files for the current page
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 0;
+  totalPagesArray: number[] = [];
 
   constructor( private fileService: FileService, private snackBar: MatSnackBar ) {}
 
@@ -72,13 +77,40 @@ export class FileManagerComponent implements OnInit {
     }
   }
 
+  previousPage(){
+    if(this.currentPage >= 1 && this.currentPage <= this.totalPages){
+      this.currentPage --;
+      this.showFilesFromBatches()
+    }
+  }
+
+  nextPage(){
+    if(this.currentPage >= 1 && this.currentPage <= this.totalPages){
+      this.currentPage++;
+      this.showFilesFromBatches()
+    }
+  }
+
+  currentPageNum(currentPage:any){
+    this.currentPage = currentPage;
+    this.showFilesFromBatches()
+
+  }
+  showFilesFromBatches(){
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedFiles = this.files.slice(startIndex, endIndex);
+  }
   /**
    * Fetch the list of files from the backend.
    */
   fetchFiles(): void {
     this.files = [];
     this.fileService.getFiles().subscribe((data: any) => {
-      this.files = data;
+      this.files = data?.files;
+      this.totalPages = Math.ceil(this.files.length / this.itemsPerPage);
+      this.totalPagesArray = Array(this.totalPages).fill(0).map((_, i) => i + 1);
+      this.showFilesFromBatches();
       console.log("this.files: ",this.files);
     });
   }

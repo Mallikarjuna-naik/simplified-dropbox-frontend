@@ -9,13 +9,13 @@
       <div class="card-body">
         <form (ngSubmit)="uploadFile()" #uploadForm="ngForm" enctype="multipart/form-data">
           <div class="mb-3">
-            <label for="fileInput" class="form-label">Choose File ( Allowed types are:.txt,.jpg,.jpeg,.png,.json ) </label>
+            <label for="fileInput" class="form-label">Choose File ( Allowed types are:.txt,.jpg,.jpeg,.png,.json,.pdf) </label>
             <input 
               type="file" 
               id="fileInput" 
               class="form-control" 
               (change)="onFileSelected($event)"
-              accept=".txt,.jpg,.jpeg,.png,.json"
+              accept=".txt,.jpg,.jpeg,.png,.json,.pdf"
               required />
           </div>
           <button 
@@ -60,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let file of files">
+            <tr *ngFor="let file of paginatedFiles">
               <td (click)="viewFile(file._id)" style="cursor: pointer;color: blue;">{{ file.name }}</td>
               <!-- <td>{{ file._id }}</td> -->
               <td>{{ file.mimetype }}</td>
@@ -77,13 +77,29 @@
                   <img src="./assets/images/delete.png" alt="delete" style="height: 32px;width: 32px;">
                 </button>
               </td>
-
               <td>
                 <span style="display: block;">Updated At: {{ file?.updatedAt }}</span>
                 <span style="display: block;">Created At: {{ file?.createdAt }}</span>
               </td>
             </tr>
           </tbody>
+          <!-- Pagination Controls -->
+          <div *ngIf="files.length > 0" class="d-flex justify-content-center mt-3">
+            <nav>
+              <ul class="pagination">
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                  <button class="page-link" (click)="previousPage()">Previous</button>
+                </li>
+                <li class="page-item" *ngFor="let page of totalPagesArray; let i = index" [class.active]="currentPage === i + 1">
+                  <button class="page-link" (click)="currentPageNum(i+1)">{{ i + 1 }}</button>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                  <button class="page-link" (click)="nextPage()">Next</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
         </table>
       </div>
     </div>
